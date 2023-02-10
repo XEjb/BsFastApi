@@ -1,14 +1,14 @@
 from typing import List
 
 from fastapi import FastAPI, Query, Path, Body
-from schemas import Book, Author
+from schemas import Book, Author, BookOut
 
 app = FastAPI()
 
 
-@app.post('/book')
-def create_book(item: Book, author: Author, quantity: int = Body(...)):
-    return {"item": item, "author": author, "quantity": quantity}
+@app.post('/book', response_model=BookOut)
+def create_book(item: Book):
+    return BookOut(**item.dict(), id=5)
 
 
 @app.post('/author')
