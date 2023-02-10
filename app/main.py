@@ -6,21 +6,6 @@ from schemas import Book, Author
 app = FastAPI()
 
 
-# @app.get('/')
-# def home():
-#     return {"key": "func home"}
-#
-#
-# @app.get('/{pk}')
-# def get_item(pk: int, q: str = None):
-#     return {'key': pk, "q": q}
-#
-#
-# @app.get('/user/{pk}/items/{item}')
-# def get_user_item(pk: int, item: str):
-#     return {'user': pk, 'item': item}
-
-
 @app.post('/book')
 def create_book(item: Book, author: Author, quantity: int = Body(...)):
     return {"item": item, "author": author, "quantity": quantity}
